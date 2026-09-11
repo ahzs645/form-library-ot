@@ -1,0 +1,273 @@
+{
+  "version": 1,
+  "name": "ot",
+  "label": "Occupational therapy document forms",
+  "description": "ICBC and WorkSafeBC occupational-therapy supplier forms (PDF and Word) prepared for filling. Each form ships with its untouched supplier document.",
+  "forms": {
+    "ot-01-cl489l-occupational-therapy-initial-report-pdf": {
+      "guidance": {
+        "purpose": "The occupational therapist's first report to ICBC after the initial assessment: diagnosis, current status, limitations, function, treatment goals and the requested program.",
+        "audience": "Completed and signed by the treating OT; read by the ICBC recovery specialist who approves treatment.",
+        "tips": [
+          "Dates print as dd/Mmm/yyyy; still submit them as yyyy-MM-dd.",
+          "The header carries claim number, dates of accident and report, payee and practitioner details — take these from the referral and the practice profile, never from memory.",
+          "Yes/No questions gate the box beneath them: answer the gate, then the detail box, and leave both blank when the topic did not come up.",
+          "Symptom, limitation and functional-ability checklists are independent checkboxes; tick every one that applies, not just the first.",
+          "The Work and study status and Critical job demands tables are repeating rows — build each row from its `table` object, not from labels.",
+          "Narrative boxes are read by an ICBC recovery specialist: state findings and their functional effect, in the third person, without speculation about causation.",
+          "Up to four dates of assessment are separate questions — one per visit, in order.",
+          "Question 3 medication source is two checkboxes (prescription bottle review, client report), not either/or.",
+          "Treatment goals and action steps is a table: goal, action step and timeframe per row.",
+          "The Expenses table and the services request (hours, rehabilitation assistant visits) are what ICBC authorises — fill them from the plan, not from the narrative."
+        ]
+      }
+    },
+    "ot-02-cl489m-occupational-therapy-progress-report-pdf": {
+      "guidance": {
+        "purpose": "Progress update to ICBC partway through an approved OT program: what changed since the previous report and what is still requested.",
+        "audience": "Treating OT; ICBC recovery specialist.",
+        "tips": [
+          "Dates print as dd/Mmm/yyyy; still submit them as yyyy-MM-dd.",
+          "The header carries claim number, dates of accident and report, payee and practitioner details — take these from the referral and the practice profile, never from memory.",
+          "Yes/No questions gate the box beneath them: answer the gate, then the detail box, and leave both blank when the topic did not come up.",
+          "Symptom, limitation and functional-ability checklists are independent checkboxes; tick every one that applies, not just the first.",
+          "The Work and study status and Critical job demands tables are repeating rows — build each row from its `table` object, not from labels.",
+          "Narrative boxes are read by an ICBC recovery specialist: state findings and their functional effect, in the third person, without speculation about causation.",
+          "Date of previous assessment and number of treatment sessions to date anchor the report — take them from the record, not the transcript.",
+          "Pre-accident and current function are paired boxes; describe both so the change is visible.",
+          "'If no, provide additional information' boxes follow goal-met questions; fill them only when the answer was No."
+        ]
+      }
+    },
+    "ot-03-cl489n-occupational-therapy-discharge-report-pdf": {
+      "guidance": {
+        "purpose": "Closing report to ICBC at the end of OT involvement: outcomes against goals, remaining limitations and any recommendations.",
+        "audience": "Treating OT; ICBC recovery specialist.",
+        "tips": [
+          "Dates print as dd/Mmm/yyyy; still submit them as yyyy-MM-dd.",
+          "The header carries claim number, dates of accident and report, payee and practitioner details — take these from the referral and the practice profile, never from memory.",
+          "Yes/No questions gate the box beneath them: answer the gate, then the detail box, and leave both blank when the topic did not come up.",
+          "Symptom, limitation and functional-ability checklists are independent checkboxes; tick every one that applies, not just the first.",
+          "The Work and study status and Critical job demands tables are repeating rows — build each row from its `table` object, not from labels.",
+          "Narrative boxes are read by an ICBC recovery specialist: state findings and their functional effect, in the third person, without speculation about causation.",
+          "Number of OT visits and RA/KIN visits are totals for the whole program.",
+          "Summary/Analysis is the box ICBC reads first: outcome, residual limitation, and whether further services are recommended."
+        ]
+      }
+    },
+    "ot-04-cl751b-occupational-therapy-treatment-plan-pdf": {
+      "guidance": {
+        "purpose": "A one-page request to ICBC for additional OT treatment hours beyond the initial allocation.",
+        "audience": "Treating OT; ICBC recovery specialist.",
+        "tips": [
+          "Hours completed, additional hours requested and approved hours remaining are three separate numbers; do not derive one from the others.",
+          "Practitioner / Therapist Type has a single option, Occupational Therapy.",
+          "Contact preference is a two-state choice; send the option text from the schema.",
+          "Anticipated end date is the date the requested block would finish."
+        ]
+      }
+    },
+    "ot-06-cl392-health-provider-invoice-pdf": {
+      "guidance": {
+        "purpose": "ICBC's standard invoice for health-provider time and expenses on a claim.",
+        "audience": "Prepared by the practice; paid by ICBC against the claim number.",
+        "tips": [
+          "Time charges and Expenses and disbursements are repeating tables: one service date, description, hours or sessions, rate and GST per row, built from the `table` object.",
+          "Rates and amounts are numbers; the invoice total is recomputed from the rows.",
+          "Vendor and payee details come from the practice profile; the claim number and date of MVA from the referral."
+        ]
+      }
+    },
+    "ot-83d201-job-site-visit-report-mar-2026-word": {
+      "guidance": {
+        "purpose": "Report of a job-site visit: the worker's job demands measured on site, findings, and recommendations to support return to work.",
+        "audience": "OT or kinesiologist who made the visit; WorkSafeBC case manager and the employer's RTW contact.",
+        "tips": [
+          "Dates are yyyy-mm-dd in the document itself; submit yyyy-MM-dd.",
+          "Header fields (claim number, worker name, date of injury, area and nature of injury accepted on claim) come from the WorkSafeBC referral — copy them exactly.",
+          "Either/or answers are separate checkboxes with nothing stopping both: tick exactly one.",
+          "Distinguish compensable from non-compensable findings wherever the label asks for it; WorkSafeBC officers read for that split.",
+          "Recommendations for equipment or additional sessions must have been discussed with the WorkSafeBC officer before the report is submitted — record the date and officer's name where the form asks.",
+          "Session counts are numbers; leave them blank rather than guessing when the transcript does not state them.",
+          "Strength, Physical and Cognitive demands are tables with frequency, distance or duration columns per demand — fill the row for each demand observed.",
+          "Provider travel time and distance are numbers used for billing; take them from the visit record.",
+          "List every participant with their role; the report is often shared with the employer."
+        ]
+      }
+    },
+    "ot-83d202-graded-return-to-work-plan-mar-2026-word": {
+      "guidance": {
+        "purpose": "A week-by-week graduated return-to-work schedule agreed with the worker and employer.",
+        "audience": "Written by the OT; signed off by WorkSafeBC and shared with the employer.",
+        "tips": [
+          "Dates are yyyy-mm-dd in the document itself; submit yyyy-MM-dd.",
+          "Header fields (claim number, worker name, date of injury, area and nature of injury accepted on claim) come from the WorkSafeBC referral — copy them exactly.",
+          "Either/or answers are separate checkboxes with nothing stopping both: tick exactly one.",
+          "Distinguish compensable from non-compensable findings wherever the label asks for it; WorkSafeBC officers read for that split.",
+          "Recommendations for equipment or additional sessions must have been discussed with the WorkSafeBC officer before the report is submitted — record the date and officer's name where the form asks.",
+          "Session counts are numbers; leave them blank rather than guessing when the transcript does not state them.",
+          "Each week is its own table: week commencing, hours per day (Monday to Sunday), tasks to perform, tasks not to perform, comments.",
+          "Hours are numbers per day, not totals; leave days off blank.",
+          "Revision number increments on every reissued plan."
+        ]
+      }
+    },
+    "ot-83d357-time-sensitive-dms-preauthorization-editable-word": {
+      "guidance": {
+        "purpose": "Word version of the fast-track WorkSafeBC pre-authorisation for durable medical equipment or services.",
+        "audience": "Requested by the OT or supplier; approved by the WorkSafeBC officer.",
+        "tips": [
+          "Line items are repeating table rows: answer one row at a time using the `table` object (table name, row, column), never the `· item N` suffix alone.",
+          "Prices are numbers; `$1,250.50` is accepted. Totals, GST and PST are recomputed from the rows unless recalculation is turned off.",
+          "Delivery dates and item descriptions belong on the same row as their price.",
+          "Leave a row entirely blank rather than half-filling it.",
+          "Each equipment or service item is a row: description with item or part number, quantity and price.",
+          "Comments should state why the request is time-sensitive."
+        ]
+      }
+    },
+    "ot-83d357-time-sensitive-dms-preauthorization-pdf": {
+      "guidance": {
+        "purpose": "Fast-track WorkSafeBC pre-authorisation for durable medical equipment or services the worker needs urgently.",
+        "audience": "Requested by the OT or supplier; approved by the WorkSafeBC officer.",
+        "tips": [
+          "Line items are repeating table rows: answer one row at a time using the `table` object (table name, row, column), never the `· item N` suffix alone.",
+          "Prices are numbers; `$1,250.50` is accepted. Totals, GST and PST are recomputed from the rows unless recalculation is turned off.",
+          "Delivery dates and item descriptions belong on the same row as their price.",
+          "Leave a row entirely blank rather than half-filling it.",
+          "Each equipment or service item is a row: description with item or part number, quantity and price.",
+          "Comments should state why the request is time-sensitive."
+        ]
+      }
+    },
+    "ot-83d486-ot-discharge-report-jun-2024-word": {
+      "guidance": {
+        "purpose": "Final OT report to WorkSafeBC at discharge: services delivered, functional status, return-to-work outcome and any ongoing needs.",
+        "audience": "Treating OT; WorkSafeBC officer and the claim owner.",
+        "tips": [
+          "Dates are yyyy-mm-dd in the document itself; submit yyyy-MM-dd.",
+          "Header fields (claim number, worker name, date of injury, area and nature of injury accepted on claim) come from the WorkSafeBC referral — copy them exactly.",
+          "Either/or answers are separate checkboxes with nothing stopping both: tick exactly one.",
+          "Distinguish compensable from non-compensable findings wherever the label asks for it; WorkSafeBC officers read for that split.",
+          "Recommendations for equipment or additional sessions must have been discussed with the WorkSafeBC officer before the report is submitted — record the date and officer's name where the form asks.",
+          "Session counts are numbers; leave them blank rather than guessing when the transcript does not state them.",
+          "Completed services is a table of session counts by service type.",
+          "The RTW section must be completed whenever the referral included RTW, even if no attempt was made — say so in the 'Other' box.",
+          "If equipment rental continues past discharge, give the reason and the follow-up plan where the note asks."
+        ]
+      }
+    },
+    "ot-83d487-ot-progress-report-jun-2024-word": {
+      "guidance": {
+        "purpose": "Interim OT report to WorkSafeBC requesting the next block of sessions: progress against goals, plan and dates.",
+        "audience": "Treating OT; WorkSafeBC officer.",
+        "tips": [
+          "Dates are yyyy-mm-dd in the document itself; submit yyyy-MM-dd.",
+          "Header fields (claim number, worker name, date of injury, area and nature of injury accepted on claim) come from the WorkSafeBC referral — copy them exactly.",
+          "Either/or answers are separate checkboxes with nothing stopping both: tick exactly one.",
+          "Distinguish compensable from non-compensable findings wherever the label asks for it; WorkSafeBC officers read for that split.",
+          "Recommendations for equipment or additional sessions must have been discussed with the WorkSafeBC officer before the report is submitted — record the date and officer's name where the form asks.",
+          "Session counts are numbers; leave them blank rather than guessing when the transcript does not state them.",
+          "Sessions requested are per service type; total sessions approved is what the officer already authorised.",
+          "Short-term and long-term goals are separate boxes; the long-term box is only for goals that differ.",
+          "Record the date of communication with the WorkSafeBC officer and their name; without it the plan cannot be approved."
+        ]
+      }
+    },
+    "ot-83d488-ot-initial-assessment-jun-2024-word": {
+      "guidance": {
+        "purpose": "The OT's initial assessment report to WorkSafeBC: subjective and objective findings, function, home and work factors, and the proposed treatment block.",
+        "audience": "Treating OT; WorkSafeBC officer.",
+        "tips": [
+          "Dates are yyyy-mm-dd in the document itself; submit yyyy-MM-dd.",
+          "Header fields (claim number, worker name, date of injury, area and nature of injury accepted on claim) come from the WorkSafeBC referral — copy them exactly.",
+          "Either/or answers are separate checkboxes with nothing stopping both: tick exactly one.",
+          "Distinguish compensable from non-compensable findings wherever the label asks for it; WorkSafeBC officers read for that split.",
+          "Recommendations for equipment or additional sessions must have been discussed with the WorkSafeBC officer before the report is submitted — record the date and officer's name where the form asks.",
+          "Session counts are numbers; leave them blank rather than guessing when the transcript does not state them.",
+          "Home environment, existing equipment and recommended equipment are three separate boxes; recommendations must already have been discussed with the officer.",
+          "The employer contact date is anticipated, not past.",
+          "Analysis should separate recovery factors from return-to-work factors."
+        ]
+      }
+    },
+    "ot-83d542-ergonomic-assessment-may-2023-word": {
+      "guidance": {
+        "purpose": "Ergonomic assessment of a workstation or task, with equipment and layout recommendations.",
+        "audience": "OT or ergonomist; WorkSafeBC officer and the employer.",
+        "tips": [
+          "Dates are yyyy-mm-dd in the document itself; submit yyyy-MM-dd.",
+          "Header fields (claim number, worker name, date of injury, area and nature of injury accepted on claim) come from the WorkSafeBC referral — copy them exactly.",
+          "Either/or answers are separate checkboxes with nothing stopping both: tick exactly one.",
+          "Distinguish compensable from non-compensable findings wherever the label asks for it; WorkSafeBC officers read for that split.",
+          "Recommendations for equipment or additional sessions must have been discussed with the WorkSafeBC officer before the report is submitted — record the date and officer's name where the form asks.",
+          "Session counts are numbers; leave them blank rather than guessing when the transcript does not state them.",
+          "Assessment location is a set of checkboxes (jobsite, training facility, worker's home, other): tick one.",
+          "Pictures go in an appendix; the workstation description box should still stand on its own.",
+          "Travel time and distance are billing numbers from the visit record."
+        ]
+      }
+    },
+    "ot-83d608-dme-and-services-quote-nov-2025-pdf": {
+      "guidance": {
+        "purpose": "A supplier or OT quote to WorkSafeBC for durable medical equipment, rentals, repairs and delivery.",
+        "audience": "Prepared by the supplier or OT; approved by the WorkSafeBC officer.",
+        "tips": [
+          "Line items are repeating table rows: answer one row at a time using the `table` object (table name, row, column), never the `· item N` suffix alone.",
+          "Prices are numbers; `$1,250.50` is accepted. Totals, GST and PST are recomputed from the rows unless recalculation is turned off.",
+          "Delivery dates and item descriptions belong on the same row as their price.",
+          "Leave a row entirely blank rather than half-filling it.",
+          "Quote type is a two-state choice, Initial or Revised.",
+          "Purchase, Rental, Repair and modification, and Delivery and labour are four separate tables; the same column labels repeat in each.",
+          "Discount, GST and PST are percentages per row."
+        ]
+      }
+    },
+    "ot-83d608-dme-and-services-quote-nov-2025-word": {
+      "guidance": {
+        "purpose": "Word version of the WorkSafeBC quote for durable medical equipment, rentals, repairs and delivery.",
+        "audience": "Prepared by the supplier or OT; approved by the WorkSafeBC officer.",
+        "tips": [
+          "Line items are repeating table rows: answer one row at a time using the `table` object (table name, row, column), never the `· item N` suffix alone.",
+          "Prices are numbers; `$1,250.50` is accepted. Totals, GST and PST are recomputed from the rows unless recalculation is turned off.",
+          "Delivery dates and item descriptions belong on the same row as their price.",
+          "Leave a row entirely blank rather than half-filling it.",
+          "Initial and Revised are two independent checkboxes; tick one.",
+          "Purchases, Rentals, Repairs and modifications, and Delivery and labour are four separate tables with the same column labels."
+        ]
+      }
+    },
+    "ot-83m10-vehicle-modification-assessment-word": {
+      "guidance": {
+        "purpose": "Assessment of a worker's driving needs and the vehicle modifications or adapted equipment required.",
+        "audience": "OT with driver-rehabilitation expertise; WorkSafeBC officer.",
+        "tips": [
+          "Dates are yyyy-mm-dd in the document itself; submit yyyy-MM-dd.",
+          "Header fields (claim number, worker name, date of injury, area and nature of injury accepted on claim) come from the WorkSafeBC referral — copy them exactly.",
+          "Either/or answers are separate checkboxes with nothing stopping both: tick exactly one.",
+          "Distinguish compensable from non-compensable findings wherever the label asks for it; WorkSafeBC officers read for that split.",
+          "Recommendations for equipment or additional sessions must have been discussed with the WorkSafeBC officer before the report is submitted — record the date and officer's name where the form asks.",
+          "Session counts are numbers; leave them blank rather than guessing when the transcript does not state them.",
+          "Diagnosis boxes (paraplegia level, quadriplegia level, amputee, brain injury, other) describe the accepted condition; leave the ones that do not apply blank.",
+          "Owned, adapted and proposed vehicle details are separate groups; do not mix years or makes between them.",
+          "Control and equipment types are free text next to a checkbox; tick the box and name the type.",
+          "Reduced-effort steering and braking are percentages."
+        ]
+      }
+    },
+    "ot-legacy-83d35-supplier-vendor-quote-pdf": {
+      "guidance": {
+        "purpose": "Legacy WorkSafeBC supplier quote form for equipment and services.",
+        "audience": "Prepared by the supplier; approved by the WorkSafeBC officer.",
+        "tips": [
+          "Line items are repeating table rows: answer one row at a time using the `table` object (table name, row, column), never the `· item N` suffix alone.",
+          "Prices are numbers; `$1,250.50` is accepted. Totals, GST and PST are recomputed from the rows unless recalculation is turned off.",
+          "Delivery dates and item descriptions belong on the same row as their price.",
+          "Leave a row entirely blank rather than half-filling it.",
+          "Quote items span two pages as two tables; continue onto page 2 only when page 1 is full.",
+          "Client date of birth uses the document's own date format; still submit yyyy-MM-dd."
+        ]
+      }
+    }
+  }
+}
