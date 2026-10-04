@@ -1,5 +1,12 @@
 # form-library-ot
 
+Published library: [Occupational therapy forms](https://projects.ahmadjalil.com/form-library-ot/).
+Copy the [manifest link](https://projects.ahmadjalil.com/form-library-ot/manifest.json)
+into Webforms **Form libraries → Add library → Import link**, or use the site's
+**Load library in Webforms** button. The 17 forms appear under the **OT** filter
+tag, with PDF/Word, Summary and MOIS previews. **Download library ZIP** installs
+the complete library on one device.
+
 A Webforms **form library**: supplier forms prepared for filling, each shipped
 with its untouched original document. The Webforms app mounts this repository
 as a git submodule under `libraries/ot` and its fill tools (workspace "Fill
@@ -42,3 +49,24 @@ pnpm exec vitest run lib/__tests__/document-presets.test.ts lib/__tests__/agent-
 
 Then add guidance for the new key to `library.json`, commit here, and commit
 the submodule bump plus the regenerated catalog in Webforms.
+
+## Publishing the importable library
+
+```sh
+npm ci
+npm test
+```
+
+The build writes `dist/index.html`, `dist/manifest.json`, a matching
+`dist/catalog.json`, versioned workspace ZIPs under `dist/forms/`, and
+`dist/webforms-library.zip`. The **source** `catalog.json` remains the existing
+array used by the Webforms submodule; only the **published** catalog uses the
+version-1 import-manifest format. Each package includes its original PDF or
+DOCX and a self-contained workspace, including Word template bytes and bindings.
+The source hash must match `field-review.json`, and tests compare every packaged
+workspace and document against the original source.
+
+`SITE_URL` overrides the published directory URL when building for another
+host. A push to `main` validates and publishes `dist/` through GitHub Pages.
+Never add completed forms or answers. Generated files and dependencies are
+ignored; supplier documents remain untouched.
