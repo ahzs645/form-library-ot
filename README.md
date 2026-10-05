@@ -67,12 +67,14 @@ The source hash must match `field-review.json`, and tests compare every packaged
 workspace and document against the original source.
 
 The site also publishes `dist/ai-prompt.md`, the text behind its **Copy AI
-prompt** buttons: the manifest, every form with its question file, the answer
-JSON format, and the routes from answers to a completed document (Webforms MCP
-tools, command line, the Webforms app, or chat only). Each card's button
-prefixes the prompt with that form. The prompt is written by
-`scripts/agent-prompt.mjs`; each manifest entry gains a `questionsUrl` pointing
-at the question file Webforms publishes for that form key.
+prompt** buttons, and `dist/forms.json`, the slim form index that prompt sends
+the assistant to. The prompt lists no forms: the assistant looks them up, reads
+the chosen form's question file, asks for the facts, and hands back a Webforms
+fill link with the answers in it (`&answers=z.<base64url deflate-raw JSON>`),
+or the answers to paste into that page. Each card's **Copy AI prompt** names
+its form first; **Copy questions** copies the form's question file for
+assistants that cannot open links. The prompt is written by
+`scripts/agent-prompt.mjs`; manifest entries gain `questionsUrl` and `fillUrl`.
 
 `SITE_URL` overrides the published directory URL when building for another
 host, and `WEBFORMS_URL` the Webforms app used for open links and question files. A push to `main` validates and publishes `dist/` through GitHub Pages.

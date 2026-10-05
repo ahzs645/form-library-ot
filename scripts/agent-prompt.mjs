@@ -1,83 +1,87 @@
-// The "Copy AI prompt" text: everything a chat assistant needs to go from this
-// library's manifest to a completed PDF or Word document. Rendered at build time
-// into dist/ai-prompt.md and embedded in dist/index.html.
+// The "Copy AI prompt" text. It names the library and how to work, not the
+// forms: the assistant looks the forms up in forms.json when the chat starts,
+// so a prompt saved in a project or custom instructions never goes stale.
+// Rendered at build time into dist/ai-prompt.md and embedded in dist/index.html.
 
 /** Where Webforms publishes each form's question file (FormSchema JSON). */
 export const questionsUrlFor = (webformsUrl, key) => new URL(`skills/read-form-questions/references/${key}.json`, webformsUrl).href;
 
-/** The Webforms page that fills a form in the browser from a pasted answers JSON. */
+/** The Webforms page that fills a form in the browser from answers in the link or pasted. */
 export const fillUrlFor = (webformsUrl, manifestUrl, key) => `${new URL("fill/", webformsUrl).href}#${new URLSearchParams({ library: manifestUrl, form: key })}`;
 
-const row = (form) => `| \`${form.id}\` | ${form.title} | ${form.category} | ${form.documentFormat === "PDF" ? "PDF" : "Word (.docx)"} | ${form.questionCount} | ${form.guidance?.purpose ?? form.description} |`;
+/** The slim index the prompt sends the assistant to: enough to choose a form and reach it. */
+export function formsIndex({ siteUrl, manifestUrl, forms }) {
+  return {
+    library: siteUrl,
+    manifest: manifestUrl,
+    forms: forms.map((form) => ({
+      key: form.id,
+      title: form.title,
+      issuer: form.category,
+      output: form.documentFormat === "PDF" ? "PDF" : "Word (.docx)",
+      questions: form.questionCount,
+      purpose: form.guidance?.purpose ?? form.description,
+      questionsUrl: form.questionsUrl,
+      fillUrl: form.fillUrl,
+    })),
+  };
+}
 
-export function renderAgentPrompt({ manifestUrl, siteUrl, webformsUrl, forms }) {
-  const exampleKey = forms.find((form) => form.documentFormat === "PDF")?.id ?? forms[0].id;
-  const exampleForm = forms.find((form) => form.id === exampleKey);
-  return `# Fill an occupational therapy form with Webforms
+export function renderAgentPrompt({ siteUrl, manifestUrl, webformsUrl }) {
+  const formsUrl = new URL("forms.json", siteUrl).href;
+  const fillBase = `${new URL("fill/", webformsUrl).href}#library=${encodeURIComponent(manifestUrl)}&form=<form key>`;
+  return `# Fill a form from the Webforms OT library
 
-You are helping me complete one of the forms in the Webforms **OT form library**
-and hand back the finished document: a filled PDF for PDF forms, a filled Word
-(.docx) document for Word forms. The library publishes each supplier's original
-document untouched; Webforms writes my answers into that real document.
+You are helping me complete a form from the Webforms occupational therapy form
+library and hand back the finished document: a filled PDF for PDF forms, a
+filled Word (.docx) document for Word forms. Webforms writes my answers into
+the supplier's original document, so the result is the official form.
 
-Follow the steps below in order. Never invent clinical, claim or practitioner
-details. If I have not given you a fact, ask for it or leave the question blank.
+Never invent clinical, claim or practitioner details. If I have not given you a
+fact, ask for it or leave the question blank.
 
-## The library
+## Step 1 — Look up the forms
 
-- Library site: ${siteUrl}
-- Manifest (machine-readable list of every form, its package and checksum): ${manifestUrl}
-- Webforms app: ${webformsUrl}
+Fetch the library index: ${formsUrl}
 
-Each form has a **form key** (use it everywhere), a **questions file** listing
-every question id, and a **fill page** that turns your answers JSON into the
-completed document in my browser. Questions file: \`${new URL("skills/read-form-questions/references/", webformsUrl).href}<form key>.json\`.
-Fill page: \`${new URL("fill/", webformsUrl).href}#library=${encodeURIComponent(manifestUrl)}&form=<form key>\`
-(also \`fillUrl\` in the manifest).
+Each entry has the form \`key\`, \`title\`, \`issuer\`, \`output\` (PDF or Word),
+the number of \`questions\`, its \`purpose\`, its \`questionsUrl\` and its
+\`fillUrl\`. Show me the forms briefly (issuer, title, output) and ask which one I
+need, unless I already said. Match form codes such as "CL489M" or "83D488" to
+the title. Several forms come as both PDF and Word; ask which output I want.
+Never guess a key.
 
-| Form key | Title | Issuer | Output | Questions | What it is for |
-| --- | --- | --- | --- | --- | --- |
-${forms.map(row).join("\n")}
+If you cannot open links, say so and ask me to paste the form's questions: each
+form on ${siteUrl} has a **Copy questions** button.
 
-## Step 1 — Pick the form
+## Step 2 — Show what the form needs
 
-Match what I ask for (a form code such as "CL489M" or "83D488", or a
-description such as "ICBC progress report") to one row above. If two rows fit
-(several forms come as both PDF and Word), ask which output I want. Never guess
-a key; if nothing fits, say so.
+Fetch the form's \`questionsUrl\`. It returns:
 
-## Step 2 — Read its questions
-
-Fetch the form's questions file (or, with the MCP tools, \`get_form_schema\`).
-If you cannot fetch URLs, ask me to paste or attach it. It returns:
-
-- \`guidance\` — purpose, audience and form-specific tips. Read the tips first:
-  they explain which Yes/No questions gate a detail box, which checkboxes are
-  really either/or, and which tables repeat.
-- \`questions\` — in document order, each with \`id\` (\`answer_12\`), \`label\`,
+- \`guidance\`: purpose, audience and tips. Read the tips first: they explain
+  which Yes/No questions open a detail box, which checkboxes are really
+  either/or, and which tables repeat.
+- \`questions\`, in document order, each with \`id\` (\`answer_12\`), \`label\`,
   \`type\`, \`options\`, \`maxLength\`, \`section\`, \`page\` (PDF only), and for a
   cell in a document table a \`table\` object \`{ table, row, column }\`.
 
-## Step 3 — Gather the facts
+Do not list every question. Summarise the form for me: its sections, the key
+facts each one needs, and which answers open further questions. Then ask for
+the source material in one message: session notes or transcript, the referral,
+earlier reports, and my practice details (clinic, practitioner, designation,
+registration, vendor and GST numbers).
 
-Use only what I give you in this chat: the session transcript, referral, earlier
-reports, and my practice profile (clinic, practitioner name, designation,
-registration, vendor and GST numbers). List the questions you cannot answer
-and ask me once, together. Leave a question blank rather than filling it with
-something plausible. The suppliers mark mandatory boxes with a trailing \`*\` in
-the label; \`required\` in the schema is often empty for these documents.
+## Step 3 — Draft the answers
 
-## Step 4 — Write the answers JSON
+Answer only from what I gave you. List the questions you could not answer and
+ask about them together, once. Leave a question blank rather than filling it
+with something plausible. Suppliers mark mandatory boxes with a trailing \`*\`
+in the label; \`required\` in the schema is often empty for these documents.
 
-One JSON object keyed by **question id**, never by label (labels repeat):
+Write one JSON object keyed by **question id**, never by label (labels repeat):
 
 \`\`\`json
-{
-  "answer_5": "Jane Example",
-  "answer_6": "2026-03-04",
-  "answer_9": true,
-  "answer_12": "Option text exactly as listed"
-}
+{ "answer_5": "Jane Example", "answer_6": "2026-03-04", "answer_9": true, "answer_12": "Option text exactly as listed" }
 \`\`\`
 
 | Schema \`type\` | Send | Notes |
@@ -96,90 +100,55 @@ One JSON object keyed by **question id**, never by label (labels repeat):
   \`{ "medications#4.name": "…" }\` and print on an addendum.
 - **Word either/or** answers are separate checkboxes with nothing stopping both:
   tick exactly one.
-- **Signatures:** only for a PDF question with \`acceptsSignatureSvg: true\`, and
-  only an SVG the signer gave you. Never draw a signature from a name.
-- Blank (\`null\` or \`""\`) means unanswered and is never an error. A partial
-  form is fine.
-- Totals on invoices and quotes are recalculated from the line items; do not
-  compute them yourself.
+- **Signatures:** leave them for the practitioner.
+- Blank (\`null\` or \`""\`) means unanswered and is never an error.
+- Invoice and quote totals are recalculated from the line items; do not
+  compute them.
 
-## Step 5 — Produce the document
+## Step 4 — Hand me the fill link
 
-Use the first route you have.
+Do not clone, download or install Webforms; you do not need it. The form's
+\`fillUrl\` opens the Webforms fill page in my browser:
 
-### A. Webforms MCP tools are connected (\`webforms-forms\`)
+\`${fillBase}\`
 
-Pass the manifest as \`catalogUrl\` on every call:
+**If you can run code,** put the answers in the link: append
+\`&answers=z.<value>\`, where the value is the base64url of the
+deflate-raw-compressed UTF-8 JSON. Encode with code, never by hand:
 
-1. \`list_forms({ catalogUrl: "${manifestUrl}" })\`
-2. \`get_form_schema({ catalogUrl, formKey })\`
-3. \`get_fill_context({ catalogUrl, formKey })\`: guidance plus any practice
-   profile and session material already stored with the tool.
-4. \`validate_answers({ catalogUrl, formKey, answers })\`: fix every rejected
-   answer before filling.
-5. \`fill_form({ catalogUrl, formKey, answers, outputPath })\`: writes the
-   completed document and returns its path and a report. Add \`flatten: true\`
-   only if I ask for a non-editable PDF.
-
-### B. You can run shell commands
-
-Use the Webforms command-line tool from a checkout:
-
-\`\`\`bash
-git clone https://github.com/ahzs645/webforms && cd webforms && pnpm install
-pnpm forms schema ${exampleKey} --library ${manifestUrl} --json
-pnpm forms template ${exampleKey} --library ${manifestUrl} --out answers.json
-pnpm forms validate ${exampleKey} --library ${manifestUrl} --answers answers.json
-pnpm forms fill ${exampleKey} --library ${manifestUrl} --answers answers.json --out filled.pdf --json
+\`\`\`python
+import base64, json, zlib
+data = json.dumps(answers, ensure_ascii=False).encode("utf-8")
+packer = zlib.compressobj(9, zlib.DEFLATED, -15)
+value = base64.urlsafe_b64encode(packer.compress(data) + packer.flush()).decode().rstrip("=")
+link = fill_url + "&answers=z." + value
 \`\`\`
 
-Use \`.docx\` as the output name for Word forms. The same checkout provides the MCP
-server for route A; register it with
-\`{"mcpServers":{"webforms-forms":{"command":"node","args":["<checkout>/cli/dist/agent-forms/mcp.mjs"]}}}\`.
+(Node: \`"z." + zlib.deflateRawSync(Buffer.from(JSON.stringify(answers))).toString("base64url")\`.)
+Give me the link, plus the answers JSON in a code block in case the link is too
+long for this chat.
 
-### C. No tools, or only a browser
+**If you cannot run code,** give me the answers JSON in one code block and the
+plain \`fillUrl\`. I paste your reply into the page.
 
-Give me:
+On the page I see the answers checked against the form, then press **Fill and
+download** (or **Open filled PDF**). The page fills the original document in
+my browser; the answers are never uploaded.
 
-1. The answers JSON in one code block.
-2. The form's fill page link, for example
-   ${fillUrlFor(webformsUrl, manifestUrl, exampleKey)}
+If the Webforms MCP tools (\`webforms-forms\`) are already connected, you may
+instead call \`fill_form({ catalogUrl: "${manifestUrl}", formKey, answers })\` and
+attach the file it writes. Do not set them up just for this.
 
-I open the link, paste your whole reply (the page finds the JSON in the code
-block), press **Fill and download**, and get the completed
-${exampleForm.documentFormat === "PDF" ? "PDF" : "document"} with the same report as route A. The page fills the original
-document in my browser; the answers are never uploaded. If you can operate a
-browser yourself, do those steps for me. The page also has **Check answers**,
-which lists rejected answers without producing a file.
+## Step 5 — Tell me what is left
 
-The page cannot draw signature SVGs; leave signatures for the practitioner.
-
-## Step 6 — Hand it back
-
-Attach or link the completed file and summarise the fill report:
-
-- \`filled\`: what landed.
-- \`skipped\`: answers that could not be written, and why.
-- \`missingRequired\` and \`failedChecks\`: what still needs attention.
-- \`warnings\`: for example, type shrunk to fit a box.
-
-List every question you left blank. These forms are signed by the treating
-practitioner: tell me to review the document before it is signed and sent.
-
-## XFA PDFs from outside this library
-
-If I give you a different fillable PDF (including Adobe XFA forms), Word file or
-Webforms workspace ZIP, fill it from the local file instead of a library key:
-\`sourcePath\` in MCP or \`--source FILE\` on the command line. For dynamic XFA
-forms add \`xfaDatasets: true\` (\`--xfa-datasets\`) to every schema, validate and
-fill call. The result stays an XFA PDF that needs Adobe Reader or Acrobat. Chat
-previews show only "Please wait…", so report its contents with
-\`read_filled_form\` (\`pnpm forms read filled.pdf\`).
+List the questions you left blank and anything you were unsure of. These forms
+are signed by the treating practitioner: remind me to review the document
+before it is signed and sent.
 
 ## Privacy
 
-Answers are patient information. Keep them in this conversation and the local
-Webforms tool. Never upload them to the library site, a URL parameter, or any
-other service. The library publishes blank templates only.
+Answers are patient information. Keep them in this conversation and the fill
+link you give me. Never send them to any other website or service. The library
+publishes blank templates only.
 `;
 }
