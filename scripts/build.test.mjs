@@ -50,3 +50,22 @@ for (const entry of catalog) test(`${entry.key}: preserves original document, fi
   assert.deepEqual(packaged, expected);
   assert.deepEqual(await readFile(join(root, "dist", "forms", original.externalDocuments[key])), sourceBytes);
 });
+
+test("publishes an AI prompt that names the manifest, every form and its question file", async () => {
+  const prompt = await readFile(join(root, "dist", "ai-prompt.md"), "utf8");
+  const page = await readFile(join(root, "dist", "index.html"), "utf8");
+  assert.ok(prompt.includes("https://projects.ahmadjalil.com/form-library-ot/manifest.json"));
+  assert.ok(prompt.includes("skills/read-form-questions/references/<form key>.json"));
+  for (const form of manifest.forms) {
+    assert.ok(prompt.includes(`\`${form.id}\``), `${form.id} missing from the prompt`);
+    assert.equal(form.questionsUrl, `https://webform.ahmadjalil.com/skills/read-form-questions/references/${form.id}.json`);
+    assert.ok(page.includes(`data-copy-prompt="${form.id}"`));
+    assert.equal(form.fillUrl, `https://webform.ahmadjalil.com/fill/#library=${encodeURIComponent("https://projects.ahmadjalil.com/form-library-ot/manifest.json")}&form=${form.id}`);
+    assert.ok(page.includes(`href="${form.fillUrl.replace(/&/g, "&amp;")}"`), `${form.id} has a Fill from answers link`);
+  }
+  assert.ok(page.includes('data-copy-prompt=""'));
+  const embedded = page.match(/const prompt=("(?:[^"\\]|\\.)*")/);
+  assert.ok(embedded, "prompt is embedded in the page script");
+  assert.equal(JSON.parse(embedded[1]), prompt);
+  assert.ok(!/<\/script>/i.test(embedded[1]));
+});

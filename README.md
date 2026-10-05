@@ -66,7 +66,15 @@ DOCX and a self-contained workspace, including Word template bytes and bindings.
 The source hash must match `field-review.json`, and tests compare every packaged
 workspace and document against the original source.
 
+The site also publishes `dist/ai-prompt.md`, the text behind its **Copy AI
+prompt** buttons: the manifest, every form with its question file, the answer
+JSON format, and the routes from answers to a completed document (Webforms MCP
+tools, command line, the Webforms app, or chat only). Each card's button
+prefixes the prompt with that form. The prompt is written by
+`scripts/agent-prompt.mjs`; each manifest entry gains a `questionsUrl` pointing
+at the question file Webforms publishes for that form key.
+
 `SITE_URL` overrides the published directory URL when building for another
-host. A push to `main` validates and publishes `dist/` through GitHub Pages.
+host, and `WEBFORMS_URL` the Webforms app used for open links and question files. A push to `main` validates and publishes `dist/` through GitHub Pages.
 Never add completed forms or answers. Generated files and dependencies are
 ignored; supplier documents remain untouched.
