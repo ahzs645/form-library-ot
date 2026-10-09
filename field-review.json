@@ -8505,6 +8505,11 @@
           }
         },
         {
+          "id": "source_83d357_service_information",
+          "label": "Service information",
+          "type": "richText"
+        },
+        {
           "id": "answer_37",
           "label": "Comments",
           "type": "textarea",
@@ -13319,7 +13324,7 @@
         },
         {
           "id": "answer_339",
-          "label": "Date of authorization",
+          "label": "WorkSafeBC officer — date of authorization (yyyy-mm-dd)",
           "type": "date",
           "dateConfig": {
             "dateFormat": "yyyy-MM-dd",
@@ -13334,7 +13339,7 @@
         },
         {
           "id": "answer_341",
-          "label": "WorkSafeBCOfficer Comments",
+          "label": "WorkSafeBC officer's comments",
           "type": "textarea",
           "textareaConfig": {
             "rows": 4,
