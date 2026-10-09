@@ -173,7 +173,8 @@
         {
           "id": "answer_23",
           "label": "Is the client taking medication related to the claim?",
-          "type": "booleanYesNo"
+          "type": "booleanYesNo",
+          "helpText": "Question 3 on the printed form. Printed instruction: “IF YES ON QUESTION 3, SPECIFY SOURCE:” / “IF YES ON QUESTION 3, SPECIFY CURRENT MEDICATION:”"
         },
         {
           "id": "answer_24",
@@ -311,7 +312,8 @@
         {
           "id": "answer_38",
           "label": "Are symptoms present?",
-          "type": "booleanYesNo"
+          "type": "booleanYesNo",
+          "helpText": "Question 12 on the printed form. Printed instruction: “IF YES, SELECT AT LEAST ONE SYMPTOM PRESENTATION:”"
         },
         {
           "id": "answer_39",
@@ -373,7 +375,8 @@
         {
           "id": "answer_49",
           "label": "Are physical limitations present?",
-          "type": "booleanYesNo"
+          "type": "booleanYesNo",
+          "helpText": "Question 14 on the printed form. Printed instruction: “If 'No' on Question 14, skip to Question 20” / “15. IF YES, SELECT AT LEAST ONE PHYSICAL LIMITATION:” Question 20 is “COGNITIVE LIMITATIONS”."
         },
         {
           "id": "answer_50",
@@ -392,7 +395,7 @@
         },
         {
           "id": "answer_53",
-          "label": "Pain",
+          "label": "Balance",
           "type": "booleanSingle"
         },
         {
@@ -420,7 +423,8 @@
         {
           "id": "answer_57",
           "label": "Do physical limitations affect functional ability?",
-          "type": "booleanYesNo"
+          "type": "booleanYesNo",
+          "helpText": "Question 17 on the printed form. Printed instruction: “If 'No' on Question 17, skip to Question 20” / “18. IF YES, SELECT AT LEAST ONE:” Question 20 is “COGNITIVE LIMITATIONS”."
         },
         {
           "id": "answer_58",
@@ -482,7 +486,8 @@
         {
           "id": "answer_68",
           "label": "Are cognitive limitations present?",
-          "type": "booleanYesNo"
+          "type": "booleanYesNo",
+          "helpText": "Question 20 on the printed form. Printed instruction: “If 'No' on Question 20, skip to Question 26” / “21. IF YES, SELECT AT LEAST ONE COGNITIVE LIMITATION:” Question 26 is “PSYCHOSOCIAL/BEHAVIOURAL LIMITATIONS”."
         },
         {
           "id": "answer_69",
@@ -534,7 +539,8 @@
         {
           "id": "answer_77",
           "label": "Do cognitive limitations affect functional ability?",
-          "type": "booleanYesNo"
+          "type": "booleanYesNo",
+          "helpText": "Question 23 on the printed form. Printed instruction: “If 'No' on Question 23, skip to Question 26” / “24. IF YES, SELECT AT LEAST ONE LIMITATION AFFECTING FUNCTIONAL ABILITY” Question 26 is “PSYCHOSOCIAL/BEHAVIOURAL LIMITATIONS”."
         },
         {
           "id": "answer_78",
@@ -581,7 +587,8 @@
         {
           "id": "answer_85",
           "label": "Are psychosocial/behavioural limitations present?",
-          "type": "booleanYesNo"
+          "type": "booleanYesNo",
+          "helpText": "Question 26 on the printed form. Printed instruction: “If 'No' on Question 26, skip to Question 30” / “27. IF YES, SELECT AT LEAST ONE PSYCHOSOCIAL/BEHAVIOURAL LIMITATION:” Question 30 is “MOBILITY/TRANSFERS: IS CLIENT ABLE TO PERFORM ON THEIR OWN?”."
         },
         {
           "id": "answer_86",
@@ -645,7 +652,8 @@
         {
           "id": "answer_95",
           "label": "Mobility/transfers — can the client perform independently?",
-          "type": "booleanYesNo"
+          "type": "booleanYesNo",
+          "helpText": "Question 30 on the printed form. Printed instruction: “IF NO, SELECT:” / “IF NO, PROVIDE ADDITIONAL INFORMATION:”"
         },
         {
           "id": "answer_96",
@@ -672,7 +680,8 @@
         {
           "id": "answer_99",
           "label": "Self-care — can the client perform independently?",
-          "type": "booleanYesNo"
+          "type": "booleanYesNo",
+          "helpText": "Question 31 on the printed form. Printed instruction: “IF NO, SELECT:” / “IF NO, PROVIDE ADDITIONAL INFORMATION:”"
         },
         {
           "id": "answer_100",
@@ -699,7 +708,8 @@
         {
           "id": "answer_103",
           "label": "Household management — can the client perform independently?",
-          "type": "booleanYesNo"
+          "type": "booleanYesNo",
+          "helpText": "Question 32 on the printed form. Printed instruction: “IF NO, SELECT:” / “IF NO, PROVIDE COMMENTS:”"
         },
         {
           "id": "answer_104",
@@ -1170,7 +1180,7 @@
         },
         {
           "id": "answer_169",
-          "label": "Vocational",
+          "label": "Medical",
           "type": "booleanYesNo"
         },
         {
@@ -1187,7 +1197,7 @@
         },
         {
           "id": "answer_171",
-          "label": "Medical",
+          "label": "Environmental",
           "type": "booleanYesNo"
         },
         {
@@ -1380,7 +1390,8 @@
             "multiline": true,
             "borderless": false,
             "resizable": true
-          }
+          },
+          "helpText": "Printed instruction under RETURN TO WORK RECOMMENDATIONS: “Fill this section if the client is NOT working or working modified duties/hours.”"
         },
         {
           "id": "answer_188",
@@ -1839,7 +1850,8 @@
             "multiline": true,
             "borderless": false,
             "resizable": true
-          }
+          },
+          "helpText": "Question 4 (PHYSICAL LIMITATIONS) on the printed form. Printed instruction: “IF YES, PROVIDE COMMENTS:”"
         },
         {
           "id": "answer_25",
@@ -1856,7 +1868,8 @@
             "multiline": true,
             "borderless": false,
             "resizable": true
-          }
+          },
+          "helpText": "Question 5 (COGNITIVE LIMITATIONS) on the printed form. Printed instruction: “IF YES, PROVIDE COMMENTS:”"
         },
         {
           "id": "answer_27",
@@ -1878,7 +1891,8 @@
         {
           "id": "answer_29",
           "label": "Mobility/transfers — can the client perform independently?",
-          "type": "booleanYesNo"
+          "type": "booleanYesNo",
+          "helpText": "Question 7 on the printed form. Printed instruction: “IF NO, SELECT:” / “IF NO, PROVIDE ADDITIONAL INFORMATION:”"
         },
         {
           "id": "answer_30",
@@ -1905,7 +1919,8 @@
         {
           "id": "answer_33",
           "label": "Self-care — can the client perform independently?",
-          "type": "booleanYesNo"
+          "type": "booleanYesNo",
+          "helpText": "Question 8 on the printed form. Printed instruction: “IF NO, SELECT:” / “IF NO, PROVIDE ADDITIONAL INFORMATION:”"
         },
         {
           "id": "answer_34",
@@ -1932,7 +1947,8 @@
         {
           "id": "answer_37",
           "label": "Household management — can the client perform independently?",
-          "type": "booleanYesNo"
+          "type": "booleanYesNo",
+          "helpText": "Question 9 on the printed form. Printed instruction: “IF NO, SELECT:” / “IF NO, PROVIDE COMMENTS:”"
         },
         {
           "id": "answer_38",
@@ -2533,7 +2549,8 @@
             "multiline": true,
             "borderless": false,
             "resizable": true
-          }
+          },
+          "helpText": "Printed instruction under RETURN TO WORK RECOMMENDATIONS: “Fill this section if the client is NOT working or working modified duties/hours.”"
         },
         {
           "id": "answer_113",
@@ -2980,7 +2997,8 @@
         {
           "id": "answer_25",
           "label": "Are symptoms present?",
-          "type": "booleanYesNo"
+          "type": "booleanYesNo",
+          "helpText": "Question 3 on the printed form. Printed instruction: “IF YES, SELECT AT LEAST ONE ONGOING SYMPTOM PRESENTATION:”"
         },
         {
           "id": "answer_26",
@@ -3042,7 +3060,8 @@
         {
           "id": "answer_36",
           "label": "Are physical limitations present?",
-          "type": "booleanYesNo"
+          "type": "booleanYesNo",
+          "helpText": "Question 5 on the printed form. Printed instruction: “If 'No' on Question 5, skip to Question 11” / “6. SELECT AT LEAST ONE PHYSICAL LIMITATION:” Question 11 is “COGNITIVE LIMITATIONS”."
         },
         {
           "id": "answer_37",
@@ -3061,7 +3080,7 @@
         },
         {
           "id": "answer_40",
-          "label": "Pain",
+          "label": "Balance",
           "type": "booleanSingle"
         },
         {
@@ -3089,7 +3108,8 @@
         {
           "id": "answer_44",
           "label": "Do physical limitations affect functional ability?",
-          "type": "booleanYesNo"
+          "type": "booleanYesNo",
+          "helpText": "Question 8 on the printed form. Printed instruction: “If 'No' on Question 8, skip to Question 11” / “9. IF YES, SELECT AT LEAST ONE:” Question 11 is “COGNITIVE LIMITATIONS”."
         },
         {
           "id": "answer_45",
@@ -3151,7 +3171,8 @@
         {
           "id": "answer_55",
           "label": "Are cognitive limitations present?",
-          "type": "booleanYesNo"
+          "type": "booleanYesNo",
+          "helpText": "Question 11 on the printed form. Printed instruction: “If 'No' on Question 11, skip to Question 14” / “12. SELECT AT LEAST ONE COGNITIVE LIMITATION:” Question 14 is “LIMITATIONS AFFECTING FUNCTIONAL ABILITY”."
         },
         {
           "id": "answer_56",
@@ -3203,7 +3224,8 @@
         {
           "id": "answer_64",
           "label": "Do cognitive limitations affect functional ability?",
-          "type": "booleanYesNo"
+          "type": "booleanYesNo",
+          "helpText": "Question 14 on the printed form. Printed instruction: “If 'No' on Question 14, skip to Question 17” Question 17 is “PSYCHOSOCIAL/BEHAVIOURAL LIMITATIONS”."
         },
         {
           "id": "answer_65",
@@ -3250,7 +3272,8 @@
         {
           "id": "answer_72",
           "label": "Are psychosocial/behavioural limitations present?",
-          "type": "booleanYesNo"
+          "type": "booleanYesNo",
+          "helpText": "Question 17 on the printed form. Printed instruction: “If 'No' on Question 17, skip to Question 21” / “18. SELECT AT LEAST ONE PSYCHOSOCIAL/BEHAVIOURAL LIMITATION” Question 21 is “MOBILITY/TRANSFERS: IS CLIENT ABLE TO PERFORM ON THEIR OWN?”."
         },
         {
           "id": "answer_73",
@@ -3314,7 +3337,8 @@
         {
           "id": "answer_82",
           "label": "Mobility/transfers — can the client perform independently?",
-          "type": "booleanYesNo"
+          "type": "booleanYesNo",
+          "helpText": "Question 21 on the printed form. Printed instruction: “IF NO, SELECT:” / “IF NO, PROVIDE UPDATED INFORMATION:”"
         },
         {
           "id": "answer_83",
@@ -3341,7 +3365,8 @@
         {
           "id": "answer_86",
           "label": "Self-care — can the client perform independently?",
-          "type": "booleanYesNo"
+          "type": "booleanYesNo",
+          "helpText": "Question 22 on the printed form. Printed instruction: “IF NO, SELECT:” / “IF NO, PROVIDE UPDATED INFORMATION:”"
         },
         {
           "id": "answer_87",
@@ -3368,7 +3393,8 @@
         {
           "id": "answer_90",
           "label": "Household management — can the client perform independently?",
-          "type": "booleanYesNo"
+          "type": "booleanYesNo",
+          "helpText": "Question 23 on the printed form. Printed instruction: “IF NO, SELECT:” / “IF NO, PROVIDE COMMENTS:”"
         },
         {
           "id": "answer_91",
@@ -3784,7 +3810,8 @@
             "multiline": true,
             "borderless": false,
             "resizable": true
-          }
+          },
+          "helpText": "Printed instruction under RETURN TO WORK RECOMMENDATIONS: “Fill this section if the client is NOT working or working modified duties/hours.”"
         },
         {
           "id": "answer_150",
@@ -4043,17 +4070,20 @@
             "useSimpleInput": true,
             "defaultCountry": "CA",
             "allowExtension": true
-          }
+          },
+          "helpText": "Printed instruction: “Provide an email address or phone number in case we need to contact you”"
         },
         {
           "id": "answer_19",
           "label": "Contact email",
-          "type": "email"
+          "type": "email",
+          "helpText": "Printed instruction: “Provide an email address or phone number in case we need to contact you”"
         },
         {
           "id": "answer_20",
           "label": "I certify that the information provided is true and correct",
-          "type": "booleanSingle"
+          "type": "booleanSingle",
+          "helpText": "Printed above this certification: “This form must be completed in full. Incomplete Treatment Plans may result in delays and impact treatment funding approval.”"
         }
       ]
     },
@@ -8492,6 +8522,11 @@
           "type": "text"
         },
         {
+          "id": "answer_40",
+          "label": "OT’s signature",
+          "type": "signature"
+        },
+        {
           "id": "answer_39",
           "label": "Date (yyyy-mm-dd)",
           "type": "date",
@@ -10320,7 +10355,7 @@
         },
         {
           "id": "answer_22",
-          "label": "Fax number",
+          "label": "Fax number*",
           "type": "phone",
           "phoneConfig": {
             "useSimpleInput": true,
@@ -12890,7 +12925,8 @@
         {
           "id": "answer_297",
           "label": "Is this an urgent/expedited request?",
-          "type": "booleanYesNo"
+          "type": "booleanYesNo",
+          "helpText": "Printed instruction for Other charges: “*Leave this section blank if your quote does not include any other charges”"
         },
         {
           "id": "answer_298",
@@ -18493,6 +18529,11 @@
       "sourceSha256": "9580e67034e95c5648c4ef64d2c010081af12a96b2d69d4ec0bed7102943efcd",
       "dateFormat": "yyyy-MM-dd",
       "fields": [
+        {
+          "id": "legacy_83d35_notice",
+          "label": "Legacy form",
+          "type": "richText"
+        },
         {
           "id": "answer_1",
           "label": "Date of request (yyyy-mm-dd)",
